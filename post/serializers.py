@@ -8,8 +8,9 @@ class PostSerializer(ModelSerializer):
         model = Post
         fields = '__all__'
 
-    # def to_representation(self, instance):
-    #     representation = super().to_representation(instance)
-    #     representation['likes'] = instance.likes.filter(value='like').count()
+    def to_representation(self, instance):
+        representation = super(PostSerializer, self).to_representation(instance)
+        representation['rating'] = instance.likes.filter(value='like').count() - instance.likes.filter(value='dislike').count()
+        return representation
     #                               # - instance.likes.filter(value='dislike').count()
 

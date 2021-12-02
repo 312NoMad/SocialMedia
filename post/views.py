@@ -17,3 +17,4 @@ class PostViewSet(ModelViewSet):
         elif self.action in ['update', 'partial_update', 'destroy']:
             return [IsAuthenticated(), IsAuthorOrAdmin()]
         return []
+
