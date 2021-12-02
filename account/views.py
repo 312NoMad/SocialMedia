@@ -11,7 +11,8 @@ from account.serializers import *
 class Registration(APIView):
 
     def post(self, request):
-        serializer = RegistrationSerializer
+        data = request.data
+        serializer = RegistrationSerializer(data=data)
         if serializer.is_valid(raise_exception=True):
             serializer.create(serializer.validated_data)
             return Response('Аккаунт успешно зарегистрирован', status=201)
@@ -22,7 +23,7 @@ class Activation(APIView):
     def post(self, request):
         serializer = ActivationSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
-            serializer.activated()
+            serializer.activate()
             return Response('Аккаунт успешно активирован', status=200)
 
 
