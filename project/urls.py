@@ -19,10 +19,11 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from django.conf import settings
 
-from post.views import PostViewSet
+from post.views import PostViewSet, LikeViewSet
 
 router = DefaultRouter()
 router.register('posts', PostViewSet)
+router.register('likes', LikeViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
